@@ -1,0 +1,162 @@
+file:
+  format: xlsx
+  header: true
+  comment: "#"
+  name: TOS_data_SEX-Chrom 2.0.xlsx
+  submitter: "Sònia Garcia"
+  # source_date: 2021-2022
+  default reference header: "citation" # ignore if attributed have specific reference values
+
+attributes:
+  # - column_name: "Imported column name"
+  #   column_reference: "Name of a column with references"
+  #   destination:
+  #     key: "name of the destination column"
+  #     separator: "|" # allows for multiple records per row, separated by the listed symbol
+  #     import_values: # listed values that will be imported together with translation to what they should be imported as
+  #       - "source value": "destination value"
+  #       - "Important Feat": "important feature" # or maybe magic "all" / "ints" / other types?
+  #     ignore:
+  #       - "Uninportant value" # specific values to ignore whem processing, overrides all
+  #       - "Any other value not worth recording"
+  #   destination:
+  #     key: "The other key that gets information from this"
+  #     import_values:
+  #       - "Important Feat 2": "important feature in a different destination"
+
+  - column_name: "Species name"
+    column_reference: "source Species name"
+    destination:
+      key: "species_name" #there is a space between the genus and species names
+      import:
+        - string
+
+  - column_name: "source"
+    column_reference: "source source"
+    destination:
+      key: "reference"
+      import:
+        - string
+        
+  - column_name: "Chromosome number (2n)" #value has sometimes an extra string under brackets to specify that chrom number is actually the haploid number or to give some extra information
+    reference: "source Chromosome.number 2n"
+    destination:
+      key: "chromosome_number_(2N)"
+      separator: "," or "/"
+      import:
+        - positive integer
+
+  - column_name: "ploidy level" #value has sometimes an extra string under brackets to give information
+    reference: "source ploidy level"
+    destination:
+      key: "ploidy"
+      separator: ","
+      import:
+        - "x"
+        - "2x"
+        - "3x"
+        - "4x"
+        - "5x"        
+        - "6x"
+        - "7x"        
+        - "8x"
+        - "9x"        
+        - "10x"
+        - "Variable"  
+      ignore:
+        - other
+        
+  - column_name: Sexual system #value has sometimes an extra string under brackets to give information
+    reference: "source Sexual system"
+    destination:
+      key: "sexual_system" 
+      separator: "and"  
+      import:
+        - "Androdioecy"
+        - "Dieocy"
+        - "Functional dioecy"
+        - "Gynodioecy"
+        - "Monoecy"
+        - "Subdioecy"
+        - "Trioecy"
+      ignore:
+        - other
+        
+- column_name: sex determination mechanism #value has sometimes an extra string under brackets to give information
+    reference: "source sex determination mechanism"
+    destination:
+      key: "sex_determination" 
+      import:
+        - "Female heterogamety"
+        - "Male heterogamety"
+        - "Male heterogamety; X/A balance"
+        - "U/V"
+      ignore:
+        - other   
+        
+- column_name: sex chromosomes male #two fields in the imported database correspond to the sex_chromosome_formula key
+    reference: "source sex chromosomes male"
+    destination:
+      key: "sex_chromosome_formula" 
+      separator: "/"
+      import:
+        - "U"
+        - "V"
+        - "X Y1 Y2"
+        - "X1 X2 X3 X4 X5 Y1 Y2 Y3 Y4 Y5"
+        - "X1 X2 X3 X4 Y1 Y2 Y3 Y4 Y5"
+        - "X1 X2 Y"
+        - "X1 X2 Y1 Y2"
+        - "X1 Y1 X2 Y2"
+        - "XXXXXY"
+        - "XXXXYY"
+        - "XXXY"
+        - "XXY"
+        - "XXYY"
+        - "XY"
+        - "XY + XYh hermaphrodite"
+        - "ZZ"
+        - "ZZ (or XY)"
+      ignore:
+        - other
+        
+- column_name: sex chromosomes female #two fields in the imported database correspond to the sex_chromosome_formula key
+    reference: "source sex chromosomes female"
+    destination:
+      key: "sex_chromosome_formula" 
+      import:
+        - "most likely XX"
+        - "U"       
+        - "U1 U2"
+        - "V"       
+        - "X1 X1 X2 X2"
+        - "X1 X1 X2 X2 X3 X3 X4 X4"       
+        - "X1 X1 X2 X2 X3 X3 X4 X4 X5 X5"
+        - "XX (hermaphrodites)"       
+        - "XXX"
+        - "XXXX"       
+        - "XXXXXX"
+        - "ZW"       
+        - "ZW (or XX)"
+      ignore:
+        - other
+        
+- column_name: sexual heteromorphic or homomorphic sex chromosomes
+    reference: "source heteromorphic or homomorphic sex chromosomes"
+    destination:
+      key: "sex_chromosome_differentiation" 
+      import:
+        - "Heteromorphic"
+        - "Heteromorphic?*"       
+        - "Homomorphic"
+        - "Homomorphic and heteromorphic populations"       
+        - "Homomorphic?*"
+      ignore:
+        - other
+        
+- column_name: Genome size (2C) #2C values
+    reference: "source Genome size (2C)"
+    destination:
+      key: "genome_size" 
+      import:
+        - positive digit
