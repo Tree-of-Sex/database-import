@@ -42,7 +42,9 @@ attributes:
     reference: "source Chromosome.number 2n"
     destination:
       key: "chromosome_number_(2N)"
-      separator: "," or "/"
+      separator: 
+       - ","
+       - "/"
       import:
         - positive integer
 
@@ -52,16 +54,16 @@ attributes:
       key: "ploidy"
       separator: ","
       import:
-        - "x"
-        - "2x"
-        - "3x"
-        - "4x"
-        - "5x"        
-        - "6x"
-        - "7x"        
-        - "8x"
-        - "9x"        
-        - "10x"
+        - "x": 1
+        - "2x": 2
+        - "3x": 3
+        - "4x": 4
+        - "5x": 5     
+        - "6x": 6
+        - "7x": 7        
+        - "8x": 8
+        - "9x": 9        
+        - "10x": 10
         - "Variable"  
       ignore:
         - other
@@ -82,7 +84,7 @@ attributes:
       ignore:
         - other
         
-- column_name: sex determination mechanism #value has sometimes an extra string under brackets to give information
+  - column_name: sex determination mechanism #value has sometimes an extra string under brackets to give information
     reference: "source sex determination mechanism"
     destination:
       key: "sex_determination" 
@@ -94,7 +96,7 @@ attributes:
       ignore:
         - other   
         
-- column_name: sex chromosomes male #two fields in the imported database correspond to the sex_chromosome_formula key
+  - column_name: sex chromosomes male #two fields in the imported database correspond to the sex_chromosome_formula key
     reference: "source sex chromosomes male"
     destination:
       key: "sex_chromosome_formula" 
@@ -120,7 +122,7 @@ attributes:
       ignore:
         - other
         
-- column_name: sex chromosomes female #two fields in the imported database correspond to the sex_chromosome_formula key
+  - column_name: sex chromosomes female #two fields in the imported database correspond to the sex_chromosome_formula key
     reference: "source sex chromosomes female"
     destination:
       key: "sex_chromosome_formula" 
@@ -141,7 +143,7 @@ attributes:
       ignore:
         - other
         
-- column_name: sexual heteromorphic or homomorphic sex chromosomes
+  - column_name: sexual heteromorphic or homomorphic sex chromosomes
     reference: "source heteromorphic or homomorphic sex chromosomes"
     destination:
       key: "sex_chromosome_differentiation" 
@@ -154,9 +156,9 @@ attributes:
       ignore:
         - other
         
-- column_name: Genome size (2C) #2C values
+  - column_name: Genome size (2C) #2C values
     reference: "source Genome size (2C)"
     destination:
       key: "genome_size" 
       import:
-        - positive digit
+        - double
