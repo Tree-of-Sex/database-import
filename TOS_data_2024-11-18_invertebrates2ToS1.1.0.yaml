@@ -8,14 +8,11 @@ file:
   default reference header: "citation" # ignore if attributed have specific refernce values
 
 attributes:
-  # column_import:
-  #   column_name: "Imported column name"
+  # - column_name: "Imported column name"
   #   column_reference: "Name of a column with references"
   #   destination:
   #     key: "name of the destination column"
-  #     separator: # allows for multiple records per row, separated by one of the listed symbols
-  #       - ","
-  #       - "-"
+  #     separator: "|" # allows for multiple records per row, separated by the listed symbol
   #     import_values: # listed values that will be imported together with translation to what they should be imported as
   #       - "source value": "destination value"
   #       - "Important Feat": "important feature" # or maybe magic "all" / "ints" / other types?
@@ -27,8 +24,7 @@ attributes:
   #     import_values:
   #       - "Important Feat 2": "important feature in a different destination"
 
-  column_import:
-    column_name: "Sexual System"
+  - column_name: "Sexual System"
     column_reference: "source  Sexual System"
     destination:
       key: "sexual_system"
@@ -37,21 +33,18 @@ attributes:
         - "parthenogenetic"
         - "hermaphrodite"
 
-  column_import:
-    column_name: "Karyotype"
+  - column_name: "Karyotype"
     reference: "source  Karyotype"
-    separator: 
-     - "|"
     destination:
       key: "sex_chromosome_formula"
+      separator: "|"  # changed in v3
       import:
         - "XO"
         - "XY"
         - "hermaphrodite"
         - "homomorphic"
 
-  column_import:
-    column_name: Haplodiploidy
+  - column_name: Haplodiploidy
     reference: "source  Haplodiploidy"
     destination:
       key: "sex_determination" 
@@ -61,24 +54,21 @@ attributes:
       ignore:
         - other
     
-  column_import:
-    column_name: "Predicted ploidy"
+  - column_name: "Predicted ploidy"
     reference: "source  Predicted ploidy"
     destination:
       key: "ploidy" 
       import:
         - intigers
 
-  column_import:
-    column_name: "Chromosome number  female  2N"
+  - column_name: "Chromosome number  female  2N"
     reference: "source  Chromosome.number  female  2N"
     destination:
       key: "chromosome number (F - 2N)" 
       import:
         - intigers
 
-  column_import:
-    column_name: "Chromosome number  male  2N"
+  - column_name: "Chromosome number  male  2N"
     reference: "source  Chromosome.number  male  2N"
     destination:
       key: "chromosome number (M - 2N)" 
