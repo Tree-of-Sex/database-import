@@ -1,0 +1,57 @@
+file:
+  format: csv
+  header: true
+  comment: "#"
+  name: drosophila-2025-05-14.csv
+  submitter: "DrosophilaKaryo" # source in GoaT
+  # source_date: 2021-03-03
+  default reference header: "Ref." # ignore if attributed have specific refernce values
+
+taxonomy:
+  # Taxonomic columns not imported:
+  # "Genus","Subgenus"
+  species:
+    header: Species
+
+
+attributes:
+  # Columns not imported:
+  # "D","X","Y","Notes"
+ 
+  - column_name: Sex  
+    destination:
+      key: "Sex chromosome formula"
+      import: 
+        - "XO"
+        - "XY"
+
+  - column_name: "V"
+    destination:
+      key: "number of metacentric chromosomes"
+      import:
+        - intigers
+ 
+  - column_name: "J"
+    destination:
+      key: "number of submetacentric chromosomes"
+      import:
+        - intigers
+
+  - column_name: "R"
+    destination:
+      key: "number of telocentric chromosomes"
+      import:
+        - intigers
+
+  - column_name: "Arms"
+    destination:
+      key: "Fundamental number"
+      import:
+        - intigers
+
+  - column_name: HaploidNum
+    destination:
+      key: "Chromosome number (1N germline)" 
+      import:
+        - intigers
+    
