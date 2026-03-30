@@ -1,0 +1,44 @@
+file:
+  format: csv
+  header: true
+  name: B-chrom 2.0
+  submitter: "B-chrom" # source in GoaT
+  # source_date: 2021-03-03
+  default reference header: "CompCitRef" # ignore if attributed have specific refernce values
+
+taxonomy:
+  species:
+    header: SpName
+  family:
+    header: Family
+
+attributes:
+  - column_name: "ChromNum"
+    destination:
+      key: "Chromosome number (2N)"
+      import:
+        - intigers # should be also ranges
+
+  - column_name: "GSD_type"
+    destination:
+      key: "sex_determination"
+      import:
+        - all: "GSD"
+
+  - column_name: "TSD_type"
+    destination:
+      key: "sex_determination"
+      import:
+        - all: "TSD" # should be also ranges
+
+  - column_name: "PloidyLevel"
+    destination:
+      key: "ploidy"
+      import:
+        - intgers
+
+  - column_name: "BsRange"
+    destination:
+      key: "Accessory chromosomes"
+      import:
+        - intigers # should be ranges really!!!
