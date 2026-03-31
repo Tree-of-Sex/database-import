@@ -7,6 +7,14 @@ file:
   # source_date: 2021-03-03
   default reference header: "citation" # ignore if attributed have specific refernce values
 
+taxonomy:
+  # Taxonomic columns not imported:
+  # "Genus","Subgenus"
+  genus:
+    header: Genus
+  species_epithet:
+    header: Species
+
 attributes:
   # - column_name: "Imported column name"
   #   column_reference: "Name of a column with references"

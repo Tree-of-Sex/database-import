@@ -7,6 +7,12 @@ file:
   # source_date: 2021-2022
   default reference header: "citation" # ignore if attributed have specific reference values
 
+taxonomy:
+  # Taxonomic columns not imported:
+  # "Genus","Subgenus"
+  species:
+    header: "Species name"
+
 attributes:
   # - column_name: "Imported column name"
   #   column_reference: "Name of a column with references"
@@ -23,13 +29,6 @@ attributes:
   #     key: "The other key that gets information from this"
   #     import_values:
   #       - "Important Feat 2": "important feature in a different destination"
-
-  - column_name: "Species name"
-    column_reference: "source Species name"
-    destination:
-      key: "species_name" #there is a space between the genus and species names
-      import:
-        - string
 
   - column_name: "source"
     column_reference: "source source"
