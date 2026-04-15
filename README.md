@@ -58,3 +58,21 @@ Changelog:
 ## Imported databases in ToS 1.1.0
 
 Maintained here: https://docs.google.com/spreadsheets/d/1dz-JoZ-aO-CBbRQoKntHEFgrdBCx3nLfmJXUXoAy4vI/edit?gid=0#gid=0
+
+### Testing yaml consistency
+
+```python
+sys.path.append("scripts")
+from test_yaml_files  import YAMLChecker
+
+
+```
+
+### Testing transformation
+
+```bash
+python3 scripts/database_transform.py databases/B-chrom\ 2.0_reformated.csv database_import_files/B-chrom2ToS1.1.0.yaml output_reformatted_db/B-chrom_ToS1.1.0_formatted.csv
+python3 scripts/database_transform.py databases/drosophila-2025-05-14.csv database_import_files/DrosophilaKaryo2ToS1.1.0.yaml output_reformatted_db/DrosophilaKaryo_ToS1.1.0_formatted.csv
+python3 scripts/database_transform.py databases/TOS_data_2024-11-18_invertebrates.csv database_import_files/TOS_data_2024-11-18_invertebrates2ToS1.1.0.yaml output_reformatted_db/TOS_data_invertebrates_ToS1.1.0_formatted.csv
+python3 scripts/database_transform.py databases/SEX-Chrom\ 2.0.csv database_import_files/TOS_data_SEX-Chrom_2.0_2ToS1.1.0.yaml output_reformatted_db/SEX-Chrom_2.0_ToS1.1.0_formatted.csv
+```
