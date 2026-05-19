@@ -1,6 +1,6 @@
 # database-import
 
-everything for integrating other databases into the Tree of Sex database.
+Tool for integrating existing databases into the Tree of Sex database.
 
 ## What is the idea
 
@@ -59,20 +59,43 @@ Changelog:
 
 Maintained here: https://docs.google.com/spreadsheets/d/1dz-JoZ-aO-CBbRQoKntHEFgrdBCx3nLfmJXUXoAy4vI/edit?gid=0#gid=0
 
-### Testing yaml consistency
+### Transforming and checking an import
 
-```python
-sys.path.append("scripts")
-from test_yaml_files  import YAMLChecker
-
-
-```
-
-### Testing transformation
+Install the small Python dependency first:
 
 ```bash
-python3 scripts/database_transform.py databases/B-chrom\ 2.0_reformated.csv database_import_files/B-chrom2ToS1.1.0.yaml output_reformatted_db/B-chrom_ToS1.1.0_formatted.csv
-python3 scripts/database_transform.py databases/drosophila-2025-05-14.csv database_import_files/DrosophilaKaryo2ToS1.1.0.yaml output_reformatted_db/DrosophilaKaryo_ToS1.1.0_formatted.csv
-python3 scripts/database_transform.py databases/TOS_data_2024-11-18_invertebrates.csv database_import_files/TOS_data_2024-11-18_invertebrates2ToS1.1.0.yaml output_reformatted_db/TOS_data_invertebrates_ToS1.1.0_formatted.csv
-python3 scripts/database_transform.py databases/SEX-Chrom\ 2.0.csv database_import_files/TOS_data_SEX-Chrom_2.0_2ToS1.1.0.yaml output_reformatted_db/SEX-Chrom_2.0_ToS1.1.0_formatted.csv
+python3 -m pip install -r requirements.txt
 ```
+
+Run the converter with a JSON report and fail the run if any non-empty,
+non-ignored source values are not imported:
+
+```bash
+python3 scripts/database_transform.py \
+  data/_Database_files/3-ToS1/data.invert.csv \
+  database_import_files/TOS_data_2024-11-18_invertebrates2ToS1.1.0.yaml \
+  output_reformatted_db/TOS_data_invertebrates_ToS1.1.0_formatted.csv \
+  --report output_reformatted_db/TOS_data_invertebrates_ToS1.1.0_report.json \
+  --fail-on-unmapped
+```
+
+The output table always has four columns:
+
+```text
+species,key,value,reference
+```
+
+The report is the main sanity check. It lists row counts, unique imported keys,
+reference coverage, empty values, ignored values, and all unmapped source
+values. For each unmapped value, decide whether to:
+
+- add it to `import` when it should be imported as-is,
+- add a mapping such as `"source value": "Tree of Sex value"`,
+- add it to `ignore` when it is deliberately not imported, or
+- clean the source data if the value is a typo or mixed-format entry.
+
+Useful validation flags:
+
+- `--validate-only` checks the YAML and source data without writing the output CSV.
+- `--fail-on-unmapped` exits with an error without writing the output CSV when any non-empty value is neither imported nor ignored.
+- `--allow-missing-columns` downgrades missing configured columns to warnings during YAML drafting.

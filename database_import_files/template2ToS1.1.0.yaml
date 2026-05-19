@@ -1,0 +1,53 @@
+# Copy this file when starting a new database import YAML.
+# Fill in the source file details, taxonomy columns, and one attributes block
+# per source column you want to import.
+
+file:
+  format: csv # csv, tsv, or xlsx
+  header: true
+  comment: "#" # optional; remove if the source file has no comment rows
+  name: TODO_source_file_name.csv
+  submitter: TODO_source_database_or_person
+  # source_date: YYYY-MM-DD
+  default reference header: TODO_reference_column
+
+taxonomy:
+  # Use this when the source has a full species name in one column.
+  species:
+    header: TODO_species_column
+
+  # Or use these two fields instead when genus and species epithet are separate.
+  # genus:
+  #   header: TODO_genus_column
+  # species_epithet:
+  #   header: TODO_species_epithet_column
+
+attributes:
+  - column_name: TODO_source_column
+    # Optional. If missing, "file.default reference header" is used.
+    column_reference: TODO_column_specific_reference
+    destination:
+      key: TODO_tree_of_sex_key
+      separator: "|" # optional; can also be a list such as [",", "/"]
+      import:
+        # Exact values to import as-is.
+        - TODO_allowed_source_value
+
+        # Exact source-to-destination mapping.
+        - TODO_source_value: TODO_tree_of_sex_value
+
+        # Type shorthands supported by the converter:
+        # - integers
+        # - positive integer
+        # - integer ranges
+        # - double
+        # - string
+      ignore:
+        - TODO_value_to_deliberately_skip
+
+  # Repeat this block for each additional source column.
+  # - column_name: TODO_another_source_column
+  #   destination:
+  #     key: TODO_another_tree_of_sex_key
+  #     import:
+  #       - string
