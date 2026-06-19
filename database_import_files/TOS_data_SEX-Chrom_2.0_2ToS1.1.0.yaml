@@ -30,15 +30,8 @@ attributes:
   #     import_values:
   #       - "Important Feat 2": "important feature in a different destination"
 
-  - column_name: "source"
-    column_reference: "source source"
-    destination:
-      key: "reference"
-      import:
-        - string
-        
   - column_name: "Chromosome number (2n)" #value has sometimes an extra string under brackets to specify that chrom number is actually the haploid number or to give some extra information
-    reference: "source Chromosome.number 2n"
+    reference: "Source 3 (miscellaneous)"
     destination:
       key: "chromosome_number_(2N)"
       separator: 
@@ -46,9 +39,11 @@ attributes:
        - "/"
       import:
         - positive integer
+      ignore:
+        - Unknown
 
-  - column_name: "ploidy level" #value has sometimes an extra string under brackets to give information
-    reference: "source ploidy level"
+  - column_name: "Ploidy level" #value has sometimes an extra string under brackets to give information
+    reference: "Source 3 (miscellaneous)"
     destination:
       key: "ploidy"
       separator: ","
@@ -66,15 +61,17 @@ attributes:
         - "Variable"  
       ignore:
         - other
+        - Unknown
         
   - column_name: Sexual system #value has sometimes an extra string under brackets to give information
-    reference: "source Sexual system"
+    reference: "Source 1 (sex chromosomes)"
     destination:
       key: "sexual_system" 
       separator: "and"  
       import:
         - "Androdioecy"
-        - "Dieocy"
+        - "Dioecy"
+        - "Dioicy"
         - "Functional dioecy"
         - "Gynodioecy"
         - "Monoecy"
@@ -82,9 +79,10 @@ attributes:
         - "Trioecy"
       ignore:
         - other
+        - Unknown
         
-  - column_name: sex determination mechanism #value has sometimes an extra string under brackets to give information
-    reference: "source sex determination mechanism"
+  - column_name: Sex determination system #value has sometimes an extra string under brackets to give information
+    reference: "Source 1 (sex chromosomes)"
     destination:
       key: "sex_determination" 
       import:
@@ -93,10 +91,11 @@ attributes:
         - "Male heterogamety; X/A balance"
         - "U/V"
       ignore:
-        - other   
+        - other
+        - Unknown
         
-  - column_name: sex chromosomes male #two fields in the imported database correspond to the sex_chromosome_formula key
-    reference: "source sex chromosomes male"
+  - column_name: Sex chromosomes MALE #two fields in the imported database correspond to the sex_chromosome_formula key
+    reference: "Source 1 (sex chromosomes)"
     destination:
       key: "sex_chromosome_formula" 
       separator: "/"
@@ -120,13 +119,16 @@ attributes:
         - "ZZ (or XY)"
       ignore:
         - other
+        - Unknown
+        - unkown
         
-  - column_name: sex chromosomes female #two fields in the imported database correspond to the sex_chromosome_formula key
-    reference: "source sex chromosomes female"
+  - column_name: Sex chromosomes FEMALE #two fields in the imported database correspond to the sex_chromosome_formula key
+    reference: "Source 1 (sex chromosomes)"
     destination:
       key: "sex_chromosome_formula" 
       import:
         - "most likely XX"
+        - "XX"
         - "U"       
         - "U1 U2"
         - "V"       
@@ -141,9 +143,11 @@ attributes:
         - "ZW (or XX)"
       ignore:
         - other
+        - Unknown
+        - unkown
         
-  - column_name: sexual heteromorphic or homomorphic sex chromosomes
-    reference: "source heteromorphic or homomorphic sex chromosomes"
+  - column_name: Heteromorphic/homomorphic sex chromosomes*
+    reference: "Source 1 (sex chromosomes)"
     destination:
       key: "sex_chromosome_differentiation" 
       import:
@@ -154,10 +158,14 @@ attributes:
         - "Homomorphic?*"
       ignore:
         - other
+        - Unknown
+        - Unknown*
         
   - column_name: Genome size (2C) #2C values
-    reference: "source Genome size (2C)"
+    reference: "Source 3 (miscellaneous)"
     destination:
       key: "genome_size" 
       import:
         - double
+      ignore:
+        - Unknown

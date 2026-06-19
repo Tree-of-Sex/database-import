@@ -13,7 +13,7 @@ taxonomy:
   genus:
     header: Genus
   species_epithet:
-    header: Species
+    header: species
 
 attributes:
   # - column_name: "Imported column name"
@@ -33,7 +33,7 @@ attributes:
   #       - "Important Feat 2": "important feature in a different destination"
 
   - column_name: "Sexual System"
-    column_reference: "source  Sexual System"
+    column_reference: "source: Sexual System"
     destination:
       key: "sexual_system"
       import:
@@ -42,7 +42,7 @@ attributes:
         - "hermaphrodite"
 
   - column_name: "Karyotype"
-    reference: "source  Karyotype"
+    reference: "source: Karyotype"
     destination:
       key: "sex_chromosome_formula"
       separator: "|"  # changed in v3
@@ -51,9 +51,14 @@ attributes:
         - "XY"
         - "hermaphrodite"
         - "homomorphic"
+        - "ZO"
+        - "ZW"
+        - "complex XO"
+        - "complex ZW"
+        - "complex XY"
 
   - column_name: Haplodiploidy
-    reference: "source  Haplodiploidy"
+    reference: "source: Haplodiploidy"
     destination:
       key: "sex_determination" 
       import:
@@ -63,21 +68,21 @@ attributes:
         - other
     
   - column_name: "Predicted ploidy"
-    reference: "source  Predicted ploidy"
+    reference: "source: Predicted ploidy"
     destination:
       key: "ploidy" 
       import:
         - intigers
 
-  - column_name: "Chromosome number  female  2N"
-    reference: "source  Chromosome.number  female  2N"
+  - column_name: "Chromosome number (female) 2N"
+    reference: "source: Chromosome number (female) 2N"
     destination:
       key: "chromosome number (F - 2N)" 
       import:
         - intigers
 
-  - column_name: "Chromosome number  male  2N"
-    reference: "source  Chromosome.number  male  2N"
+  - column_name: "Chromosome number (male) 2N"
+    reference: "source: Chromosome number (male) 2N"
     destination:
       key: "chromosome number (M - 2N)" 
       import:
